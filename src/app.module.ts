@@ -9,6 +9,8 @@ import { UserResolver } from './user/user.resolver';
 import { userProviders } from './user/user.providers';
 import { databaseProviders } from './database/database.providers';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { GrpcTestService } from './grpc-test/grpc-test.service';
+import { FeatureResolver, RouteNoteResolver, RouteSummaryResolver } from './grpc-test/grpc-test.resolver';
 
 @Module({
   imports: [GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -20,6 +22,10 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
     AppService,
     UserService,
     UserResolver,
+    GrpcTestService,
+    FeatureResolver,
+    RouteSummaryResolver,
+    RouteNoteResolver,
     ...databaseProviders,
     ...userProviders,],
 })

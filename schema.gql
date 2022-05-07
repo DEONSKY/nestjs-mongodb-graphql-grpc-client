@@ -8,8 +8,49 @@ type User {
   age: Float!
 }
 
+type Point {
+  latitude: Float!
+  longitude: Float!
+}
+
+type Feature {
+  name: String
+  location: Point!
+}
+
+type RouteNote {
+  location: Point!
+  message: String!
+}
+
+type RouteSummary {
+  point_count: Float
+  feature_count: Float
+  distance: Float
+  elapsed_time: Float
+}
+
 type Query {
   users: [User!]!
+  getFeature(input: PointInput!): Feature!
+  getFeatures(input: RectangleInput!): [Feature!]!
+  recordRoute(input: [PointInput!]!): RouteSummary!
+  routeChat(input: [RouteNoteInput!]!): [RouteNote!]!
+}
+
+input PointInput {
+  latitude: Float!
+  longitude: Float!
+}
+
+input RectangleInput {
+  lo: PointInput!
+  hi: PointInput!
+}
+
+input RouteNoteInput {
+  location: PointInput!
+  message: String!
 }
 
 type Mutation {
