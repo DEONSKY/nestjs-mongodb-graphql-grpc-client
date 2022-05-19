@@ -8,6 +8,19 @@ type User {
   age: Float!
 }
 
+type Author {
+  _id: ID!
+  name: String!
+  books: [Book!]!
+}
+
+type Book {
+  _id: ID!
+  title: String!
+  isbn: String!
+  author: Author!
+}
+
 type Point {
   latitude: Float!
   longitude: Float!
@@ -30,28 +43,19 @@ type RouteSummary {
   elapsed_time: Float
 }
 
-type Author {
-  _id: ID!
-  name: String!
-  books: [Book!]!
-}
-
-type Book {
-  _id: ID!
-  title: String!
-  isbn: String!
-  author: Author!
-}
-
 type Query {
   users: [User!]!
+  authors: [Author!]!
+  books: [Book!]!
+  book(input: FindBookInput!): Book!
   getFeature(input: PointInput!): Feature!
   getFeatures(input: RectangleInput!): [Feature!]!
   recordRoute(input: [PointInput!]!): RouteSummary!
   routeChat(input: [RouteNoteInput!]!): [RouteNote!]!
-  authors: [Author!]!
-  books: [Book!]!
-  book(input: FindBookInput!): Book!
+}
+
+input FindBookInput {
+  _id: String!
 }
 
 input PointInput {
@@ -67,10 +71,6 @@ input RectangleInput {
 input RouteNoteInput {
   location: PointInput!
   message: String!
-}
-
-input FindBookInput {
-  _id: String!
 }
 
 type Mutation {

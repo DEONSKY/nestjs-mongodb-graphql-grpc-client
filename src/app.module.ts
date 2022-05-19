@@ -15,6 +15,7 @@ import { AuthorModule } from './author/author.module';
 import { BookModule } from './book/book.module';
 import { MONO_DB_CONNECTION_STRING } from './constants';
 import { MongooseModule } from '@nestjs/mongoose';
+import { GrpcTestModule } from './grpc-test/grpc.test.module';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     GraphQLModule.forRoot<ApolloDriverConfig>({
     driver: ApolloDriver,
     autoSchemaFile: 'schema.gql',
-  }), UserModule,DatabaseModule,AuthorModule,BookModule],
+  }), UserModule,DatabaseModule,AuthorModule,BookModule,GrpcTestModule],
   controllers: [AppController],
   providers: [
     AppService,
@@ -30,10 +31,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     UserResolver,
     BookModule,
     AuthorModule,
-    GrpcTestService,
-    FeatureResolver,
-    RouteSummaryResolver,
-    RouteNoteResolver,
+    GrpcTestModule,
     ...databaseProviders,
     ...userProviders,],
 })
