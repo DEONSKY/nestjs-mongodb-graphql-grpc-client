@@ -30,12 +30,28 @@ type RouteSummary {
   elapsed_time: Float
 }
 
+type Author {
+  _id: ID!
+  name: String!
+  books: [Book!]!
+}
+
+type Book {
+  _id: ID!
+  title: String!
+  isbn: String!
+  author: Author!
+}
+
 type Query {
   users: [User!]!
   getFeature(input: PointInput!): Feature!
   getFeatures(input: RectangleInput!): [Feature!]!
   recordRoute(input: [PointInput!]!): RouteSummary!
   routeChat(input: [RouteNoteInput!]!): [RouteNote!]!
+  authors: [Author!]!
+  books: [Book!]!
+  book(input: FindBookInput!): Book!
 }
 
 input PointInput {
@@ -53,12 +69,28 @@ input RouteNoteInput {
   message: String!
 }
 
+input FindBookInput {
+  _id: String!
+}
+
 type Mutation {
   createUser(input: CreateUserInput!): User!
+  createAuthor(input: CreateAuthorInput!): Author!
+  createBook(input: CreateBookInput!): Book!
 }
 
 input CreateUserInput {
   name: String!
   email: String!
   age: Float!
+}
+
+input CreateAuthorInput {
+  name: String!
+}
+
+input CreateBookInput {
+  title: String!
+  isbn: String!
+  author: String!
 }
