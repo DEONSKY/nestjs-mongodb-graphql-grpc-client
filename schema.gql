@@ -37,10 +37,10 @@ type RouteNote {
 }
 
 type RouteSummary {
-  point_count: Float
-  feature_count: Float
+  pointCount: Float
+  featureCount: Float
   distance: Float
-  elapsed_time: Float
+  elapsedTime: Float
 }
 
 type Query {

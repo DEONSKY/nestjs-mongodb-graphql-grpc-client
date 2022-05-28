@@ -35,11 +35,11 @@ export class RouteNote {
 @ObjectType()
 export class RouteSummary {
   @Field({ nullable: true })
-  point_count: number;
+  pointCount: number;
   @Field({ nullable: true })
-  feature_count: number;
+  featureCount: number;
   @Field({ nullable: true })
   distance: number;
   @Field({ nullable: true })
-  elapsed_time: number;
+  elapsedTime: number;
 }

@@ -2,6 +2,7 @@ import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { GrpcTestService } from './grpc-test.service';
 import { Point, Feature,Rectangle,RouteNote, RouteSummary } from './grpc-test.scheme';
 import { PointInput, RectangleInput, RouteNoteInput } from './grpc-test.input';
+import { toArray } from 'rxjs';
 
 @Resolver(() => Feature)
 export class FeatureResolver {
@@ -24,7 +25,8 @@ export class RouteSummaryResolver {
 
   @Query(() => RouteSummary)
   async recordRoute(@Args({name:'input', type: () => [PointInput]}) points: [PointInput]) {
-    return this.grpcTestService.recordRoutee(points);
+    let res = this.grpcTestService.recordRoutee(points)
+    return res;
   }
   
 }

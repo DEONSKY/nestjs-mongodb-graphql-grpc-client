@@ -28,3 +28,17 @@ export interface RouteNote {
   location: Point;
   message: string;
 }
+
+export interface RouteSummary {
+  // The number of points received.
+  point_count: number;
+
+  // The number of known features passed while traversing the route.
+  feature_count: number;
+
+  // The distance covered in metres.
+  distance: number;
+
+  // The duration of the traversal in seconds.
+  elapsed_time: number;
+}
